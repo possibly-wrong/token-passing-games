@@ -39,7 +39,7 @@ class Dreidel:
                         [c - self.min_coins for c in next_state[:-1]] +
                         [next_state[-1] - 1]) * self.num_players + next_turn)
             b.append(value)
-        x, info = gmres(csr_array((data, (rows, cols))), b, tol=1e-7)
+        x, info = gmres(csr_array((data, (rows, cols))), b, rtol=1e-7)
         assert(info == 0)
         for (state, turn), v in zip(self.all_states(), x):
             self.values[(state, turn)] = v
